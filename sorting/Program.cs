@@ -1,6 +1,28 @@
 ﻿// See https://aka.ms/new-console-template for more information
 public class program
 {
+    public static int[] BubbleSort(int N, int[] arr)
+    {
+        int temp;
+        int[] result = new int[N];
+        for (int i=0; i<N; i++)
+        {
+            result[i] = arr[i];
+        }
+        for (int i=0; i<N; i++)
+        {
+            for (int j=0; j<N-i-1; j++)
+            {
+                if (result[j] > result[j+1])
+                {
+                    temp = result[j];
+                    result[j] = result[j+1];
+                    result[j+1] = temp;
+                }
+            }
+        }
+        return result;
+    }
     public static int[] MergeSort(int N, int[] arr)
     {
         if (N == 1) return arr;
@@ -58,10 +80,19 @@ public class program
         {
             arr[i] = int.Parse(Console.ReadLine());
         }
-        arr = MergeSort(N, arr);
+        int[] result = MergeSort(N, arr);
+        Console.Write("after merge sort: ");
         for (int i=0; i<N; i++)
         {
-            Console.Write($"{arr[i]} ");
+            Console.Write($"{result[i]} ");
+        }
+        Console.WriteLine();
+
+        result = BubbleSort(N, arr);
+        Console.Write("after Bubble sort: ");
+        for (int i=0; i<N; i++)
+        {
+            Console.Write($"{result[i]} ");
         }
         Console.WriteLine();
     }
